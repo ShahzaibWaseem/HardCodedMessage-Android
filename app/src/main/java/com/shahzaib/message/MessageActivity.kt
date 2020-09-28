@@ -42,7 +42,7 @@ class MessageActivity: AppCompatActivity(){
         val view = binding.root
         setContentView(view)
 
-        val phoneNumber = "+923075354771"
+        val phoneNumber = "YOUR OWN PHONE NUMBER HERE"
         val text = "Welcome to C.H.I."
 
         binding.sendingNumberTextView.text = phoneNumber
