@@ -69,11 +69,11 @@ class MessageActivity: AppCompatActivity(){
 
     private fun sendSMS() {
         val sentPI: PendingIntent = PendingIntent.getBroadcast(this, 0,
-            Intent(SENT), 0)
+            Intent(SMS_SENT), 0)
         val deliveredPI: PendingIntent = PendingIntent.getBroadcast(this, 0,
-            Intent(DELIVERED), 0)
+            Intent(SMS_DELIVERED), 0)
 
-        //---when the SMS has been sent---
+        // When SMS is sent
         registerReceiver(object : BroadcastReceiver() {
             override fun onReceive(arg0: Context, arg1: Intent) {
                 when (resultCode) {
@@ -89,9 +89,9 @@ class MessageActivity: AppCompatActivity(){
                         Toast.makeText(baseContext, "Radio off", Toast.LENGTH_SHORT).show()
                 }
             }
-        }, IntentFilter(SENT))
+        }, IntentFilter(SMS_SENT))
 
-        //---when the SMS has been delivered---
+        // SMS Delivered
         registerReceiver(object : BroadcastReceiver() {
             override fun onReceive(arg0: Context, arg1: Intent) {
                 when (resultCode) {
@@ -99,7 +99,7 @@ class MessageActivity: AppCompatActivity(){
                     RESULT_CANCELED -> Toast.makeText(baseContext, "SMS not delivered", Toast.LENGTH_SHORT).show()
                 }
             }
-        }, IntentFilter(DELIVERED))
+        }, IntentFilter(SMS_DELIVERED))
 
         smsManager.sendTextMessage(phoneNumber, null, text, sentPI, deliveredPI)
     }
@@ -132,8 +132,8 @@ class MessageActivity: AppCompatActivity(){
     companion object {
         private const val SEND_SMS_REQUEST_CODE = 1
         private const val RECEIVE_SMS_REQUEST_CODE = 2
-        private const val SENT = "SMS_SENT"
-        private const val DELIVERED = "SMS_DELIVERED"
+        private const val SMS_SENT = "SMS_SENT"
+        private const val SMS_DELIVERED = "SMS_DELIVERED"
 
         private const val phoneNumber = "YOUR_PHONE_NUMBER"
         private const val text = "Welcome to C.H.I."
