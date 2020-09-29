@@ -135,7 +135,7 @@ class MessageActivity: AppCompatActivity(){
         private const val SENT = "SMS_SENT"
         private const val DELIVERED = "SMS_DELIVERED"
 
-        private const val phoneNumber = "+923075354771"
+        private const val phoneNumber = "YOUR_PHONE_NUMBER"
         private const val text = "Welcome to C.H.I."
     }
 }
